@@ -212,3 +212,264 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JavaScript is used to make web forms interactive by accessing form fields, handling user events, validating input, and displaying appropriate error messages.
+
+In this practical, a Gym Admission Form is developed with live validation to ensure that users enter correct details before registration.
+
+
+1. FORM HANDLING IN JAVASCRIPT:
+
+HTML forms are used to collect information from users, such as name, email, phone number, age, gender, and membership plan.
+
+JavaScript provides methods to access and manipulate form elements dynamically.
+
+Methods and properties used:
+
+- getElementById() : Accesses an HTML element using its ID.
+- value : Retrieves the value entered by the user.
+- reset() : Resets all form fields to their initial values.
+- innerText : Displays or modifies text content.
+
+
+2. EVENT HANDLING:
+
+An event is an action performed by the user, such as typing, selecting an option, or submitting a form.
+
+JavaScript provides addEventListener() to attach event handlers to HTML elements.
+
+Events used in this practical:
+
+a) input event:
+Occurs whenever the user enters or modifies data in an input field.
+
+Example:
+name.addEventListener("input", validateName);
+
+It is used for live validation of name, email, phone number, and age.
+
+b) change event:
+Occurs when the value of an input or dropdown selection is changed.
+
+Example:
+gender.addEventListener("change", validateGender);
+
+It is used to validate gender and membership plan selections.
+
+c) submit event:
+Occurs when the user submits the form.
+
+Example:
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+});
+
+It is used to validate all form fields before completing registration.
+
+
+3. LIVE FORM VALIDATION:
+
+Live validation checks the entered data while the user is filling out the form instead of waiting until submission.
+
+In this practical, the input and change events are used to validate fields immediately.
+
+If the entered information is invalid, an error message is displayed below the respective field. If the information becomes valid, the error message is cleared.
+
+
+4. REGULAR EXPRESSIONS (REGEX):
+
+A Regular Expression is a pattern used to match, search, and validate text.
+
+Regular expressions are written between forward slashes (/ /).
+
+Common symbols:
+
+- ^ : Matches the beginning of a string.
+- $ : Matches the end of a string.
+- + : Matches one or more occurrences.
+- { } : Specifies the number of occurrences.
+- [ ] : Defines a character set.
+- [^ ] : Matches characters not included in the set.
+- \s : Matches whitespace characters.
+- . : Matches any character except line terminators.
+
+In this practical, regular expressions are used to validate the name, email, and phone number.
+
+
+5. NAME VALIDATION:
+
+The following regular expression is used:
+
+/^[A-Za-z ]+$/
+
+It allows only uppercase letters, lowercase letters, and spaces.
+
+The trim() method removes leading and trailing whitespace before validation.
+
+Example:
+ /^[A-Za-z ]+$/.test(name.value.trim());
+
+The test() method returns true if the name matches the pattern; otherwise, it returns false.
+
+
+6. EMAIL VALIDATION:
+
+The following regular expression is used:
+
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+It checks whether the entered email follows a basic email format.
+
+Explanation:
+- ^ : Starts matching from the beginning.
+- [^\s@]+ : Matches characters other than whitespace and @.
+- @ : Checks for the @ symbol.
+- \. : Matches a dot.
+- $ : Ensures matching reaches the end.
+
+The test() method checks whether the email matches the pattern.
+
+Note: This is a basic format check and does not guarantee that the email address exists.
+
+
+7. PHONE NUMBER VALIDATION:
+
+The following regular expression is used:
+
+/^[0-9]{10}$/
+
+Explanation:
+- ^ : Marks the beginning.
+- [0-9] : Allows digits from 0 to 9.
+- {10} : Requires exactly 10 digits.
+- $ : Marks the end.
+
+It ensures that the user enters exactly 10 numeric digits.
+
+
+8. AGE AND DROPDOWN VALIDATION:
+
+Age is validated using conditional operators.
+
+Example:
+age.value >= 16 && age.value <= 60;
+
+It ensures that the entered age is between 16 and 60.
+
+Gender and membership plan are validated by checking whether their selected values are empty.
+
+Example:
+gender.value !== "";
+
+This ensures that the user selects an option before submitting the form.
+
+
+9. REUSABLE VALIDATION FUNCTION:
+
+A reusable function is a function that can be called multiple times to perform a common operation.
+
+In this practical, the validate() function is used to validate different form fields.
+
+It accepts parameters such as field, error message ID, message, and validation condition.
+
+If the condition is true, the error message is cleared and the function returns true.
+
+Otherwise, the error message is displayed and the function returns false.
+
+This reduces code repetition and makes validation easier to manage.
+
+
+10. BOOLEAN OPERATORS:
+
+JavaScript provides logical operators to combine multiple conditions.
+
+Common logical operators:
+
+- && : Logical AND, returns true when all conditions are true.
+- || : Logical OR, returns true when at least one condition is true.
+- ! : Logical NOT, reverses a Boolean value.
+
+In this practical, the logical AND operator (&&) combines the results of all validation functions before registration.
+
+If all validation functions return true, registration is successful.
+
+Note: The AND operator uses short-circuit evaluation, so later validation functions are not executed once an earlier condition returns false.
+
+
+11. PREVENTING DEFAULT FORM SUBMISSION:
+
+The preventDefault() method prevents the browser's default action.
+
+In this practical, it prevents the form from submitting and reloading the webpage before JavaScript validation is completed.
+
+The novalidate attribute in the form disables the browser's built-in form validation, allowing custom JavaScript validation to handle the checks.
+
+
+12. WORKING OF THE PRACTICAL:
+
+The webpage contains a Gym Admission Form with fields for full name, email, phone number, age, gender, and membership plan.
+
+JavaScript first accesses all form elements using getElementById().
+
+The input event performs live validation for text and number fields, while the change event validates dropdown selections.
+
+Reusable validation functions check each field using conditions and regular expressions.
+
+When the user clicks the Register Now button, the submit event is triggered and preventDefault() prevents normal form submission.
+
+The program checks all validation conditions. If all fields are valid, a successful registration message is displayed and the form is reset using reset().
+
+If any validation fails, the corresponding error messages are displayed and an alert asks the user to correct the errors.
+
+Thus, the practical demonstrates DOM manipulation, form handling, event handling, regular expressions, live validation, reusable functions, and logical operators.
+
+-->
