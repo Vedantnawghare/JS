@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grading System</title>
+
+    <!-- CSS SECTION -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #174a7e;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #174a7e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d3155;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e8f8f0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #result p {
+            line-height: 1.6;
+        }
+
+        .grade {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML SECTION -->
+    <div class="container">
+
+        <h1>SIT Nagpur</h1>
+        <h2>Student Grading System</h2>
+
+        <form id="gradeForm">
+
+            <label>Student Name:</label>
+            <input type="text" id="name"
+                   placeholder="Enter student name" required>
+
+            <label>PRN Number:</label>
+            <input type="text" id="prn"
+                   placeholder="Enter PRN number" required>
+
+            <label>Enter Marks (Out of 100):</label>
+            <input type="number" id="marks"
+                   placeholder="Enter marks" min="0" max="100" required>
+
+            <button type="submit">Calculate Grade</button>
+
+        </form>
+
+        <!-- RESULT SECTION -->
+        <div id="result">
+            <h2>Result</h2>
+            <div id="resultDetails"></div>
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT SECTION -->
+    <script>
+
+        // Display welcome message
+        console.log("Student Grading System Loaded");
+
+        // Form submission
+        document.getElementById("gradeForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            // Get user input
+            let name = document.getElementById("name").value.trim();
+            let prn = document.getElementById("prn").value.trim();
+            let marksInput = document.getElementById("marks").value;
+            let marks = Number(marksInput);
+
+            // Form validation
+            if (name === "" || prn === "" || marksInput === "") {
+
+                alert("Please fill all the fields!");
+                return;
+
+            }
+
+            if (marks < 0 || marks > 100) {
+
+                alert("Please enter marks between 0 and 100!");
+                return;
+
+            }
+
+            // Control structure: if-else if-else
+            let grade;
+            let status;
+
+            if (marks >= 90) {
+
+                grade = "A+";
+                status = "Excellent";
+
+            }
+            else if (marks >= 80) {
+
+                grade = "A";
+                status = "Very Good";
+
+            }
+            else if (marks >= 70) {
+
+                grade = "B";
+                status = "Good";
+
+            }
+            else if (marks >= 60) {
+
+                grade = "C";
+                status = "Average";
+
+            }
+            else if (marks >= 40) {
+
+                grade = "D";
+                status = "Pass";
+
+            }
+            else {
+
+                grade = "F";
+                status = "Fail";
+
+            }
+
+            // Display result
+            document.getElementById("resultDetails").innerHTML = `
+                <p><b>Student Name:</b> ${name}</p>
+                <p><b>PRN Number:</b> ${prn}</p>
+                <p><b>Marks:</b> ${marks}/100</p>
+                <p class="grade ${grade === "F" ? "fail" : ""}">
+                    Grade: ${grade}
+                </p>
+                <p><b>Result:</b> ${status}</p>
+            `;
+
+            document.getElementById("result").style.display = "block";
+
+            // Popup message
+            alert(`Hello ${name}! Your grade is ${grade}.`);
+
+            // Console output
+            console.log("Student Name:", name);
+            console.log("Marks:", marks);
+            console.log("Grade:", grade);
+            console.log("Result:", status);
+
+        });
+
+    </script>
+
+</body>
+</html>

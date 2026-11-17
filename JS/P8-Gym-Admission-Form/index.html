@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gym Admission Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(120deg, #141e30, #243b55);
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            width: 420px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #111;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e85d04;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border: 2px solid #e85d04;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #e85d04;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #c44b00;
+        }
+
+        #success {
+            color: green;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>FITNESS CLUB</h2>
+    <h3>Gym Admission Form</h3>
+
+    <form id="gymForm" novalidate>
+
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <span class="error" id="nameError"></span>
+
+        <label>Email</label>
+        <input type="text" id="email" placeholder="Enter email">
+        <span class="error" id="emailError"></span>
+
+        <label>Phone Number</label>
+        <input type="text" id="phone" placeholder="10 digit number">
+        <span class="error" id="phoneError"></span>
+
+        <label>Age</label>
+        <input type="number" id="age" placeholder="Enter age">
+        <span class="error" id="ageError"></span>
+
+        <label>Gender</label>
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <span class="error" id="genderError"></span>
+
+        <label>Membership Plan</label>
+        <select id="plan">
+            <option value="">Select Plan</option>
+            <option>Monthly - Rs.1000</option>
+            <option>Quarterly - Rs.2500</option>
+            <option>Yearly - Rs.8000</option>
+        </select>
+        <span class="error" id="planError"></span>
+
+        <button type="submit">Register Now</button>
+        <p id="success"></p>
+
+    </form>
+</div>
+
+<script>
+    // Get form elements
+    let form = document.getElementById("gymForm");
+
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let phone = document.getElementById("phone");
+    let age = document.getElementById("age");
+    let gender = document.getElementById("gender");
+    let plan = document.getElementById("plan");
+
+    // Validation function
+    function validate(field, errorId, message, condition) {
+        if (condition) {
+            document.getElementById(errorId).innerText = "";
+            return true;
+        } else {
+            document.getElementById(errorId).innerText = message;
+            return false;
+        }
+    }
+
+    function validateName() {
+        return validate(name, "nameError",
+            "Enter a valid name",
+            /^[A-Za-z ]+$/.test(name.value.trim()));
+    }
+
+    function validateEmail() {
+        return validate(email, "emailError",
+            "Enter a valid email",
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
+    }
+
+    function validatePhone() {
+        return validate(phone, "phoneError",
+            "Enter 10 digit phone number",
+            /^[0-9]{10}$/.test(phone.value));
+    }
+
+    function validateAge() {
+        return validate(age, "ageError",
+            "Age must be between 16 and 60",
+            age.value >= 16 && age.value <= 60);
+    }
+
+    function validateGender() {
+        return validate(gender, "genderError",
+            "Please select gender", gender.value !== "");
+    }
+
+    function validatePlan() {
+        return validate(plan, "planError",
+            "Please select membership plan", plan.value !== "");
+    }
+
+    // Live validation using input event
+    name.addEventListener("input", validateName);
+    email.addEventListener("input", validateEmail);
+    phone.addEventListener("input", validatePhone);
+    age.addEventListener("input", validateAge);
+
+    // Change event for dropdowns
+    gender.addEventListener("change", validateGender);
+    plan.addEventListener("change", validatePlan);
+
+    // Submit event
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let valid =
+            validateName() &&
+            validateEmail() &&
+            validatePhone() &&
+            validateAge() &&
+            validateGender() &&
+            validatePlan();
+
+        if (valid) {
+            document.getElementById("success").innerText =
+                "Registration Successful! Welcome to Fitness Club.";
+
+            form.reset();
+        } else {
+            document.getElementById("success").innerText = "";
+            alert("Please correct all errors!");
+        }
+    });
+</script>
+
+</body>
+</html>

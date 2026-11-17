@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Palindrome Checker</title>
+
+    <!-- CSS SECTION -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #174a7e;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #174a7e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d3155;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e8f8f0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .example {
+            background-color: #f1f5f9;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML SECTION -->
+    <div class="container">
+
+        <h1>SIT Nagpur</h1>
+        <h2>Palindrome Checker</h2>
+
+        <p style="text-align:center;">
+            Enter a word to check whether it is a palindrome or not.
+        </p>
+
+        <form id="palindromeForm">
+
+            <label>Enter a Word:</label>
+
+            <input type="text" id="word"
+                   placeholder="Enter a word" required>
+
+            <button type="submit">Check Palindrome</button>
+
+        </form>
+
+        <!-- RESULT SECTION -->
+        <div id="result">
+            <h2>Result</h2>
+            <div id="resultDetails"></div>
+        </div>
+
+        <!-- EXAMPLES -->
+        <div class="example">
+            <b>Examples:</b><br>
+            MADAM - Palindrome<br>
+            LEVEL - Palindrome<br>
+            HELLO - Not Palindrome
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT SECTION -->
+    <script>
+
+        // Global scope variable
+        let collegeName = "SIT Nagpur";
+
+        console.log("Palindrome Checker Loaded");
+
+        // Function 1: Function Declaration
+        function reverseWord(word) {
+
+            let reversed = word.split("").reverse().join("");
+
+            return reversed;
+        }
+
+
+        // Function 2: Function Expression
+        const checkPalindrome = function(word) {
+
+            let original = word.toLowerCase();
+
+            let reversed = reverseWord(original);
+
+            return original === reversed;
+        };
+
+
+        // Function 3: Arrow Function
+        const displayMessage = (word, result) => {
+
+            if (result) {
+                return `${word} is a Palindrome!`;
+            }
+            else {
+                return `${word} is NOT a Palindrome!`;
+            }
+
+        };
+
+
+        // Function 4: Closure
+        function counter() {
+
+            let count = 0;
+
+            return function() {
+
+                count++;
+
+                return count;
+
+            };
+
+        }
+
+        // Creating closure
+        const checkCount = counter();
+
+
+        // Form submission
+        document.getElementById("palindromeForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            try {
+
+                // Get user input
+                let word = document.getElementById("word").value.trim();
+
+                // Validate input
+                if (word === "") {
+                    throw new Error("Please enter a word!");
+                }
+
+                if (!/^[a-zA-Z]+$/.test(word)) {
+                    throw new Error("Please enter only alphabets!");
+                }
+
+                // Check palindrome
+                let result = checkPalindrome(word);
+
+                // Closure function call
+                let totalChecks = checkCount();
+
+                // Display message
+                let message = displayMessage(word, result);
+
+                document.getElementById("resultDetails").innerHTML = `
+                    <p><b>College:</b> ${collegeName}</p>
+
+                    <p><b>Entered Word:</b> ${word}</p>
+
+                    <p><b>Reversed Word:</b> ${reverseWord(word)}</p>
+
+                    <p class="${result ? 'success' : 'error'}">
+                        ${message}
+                    </p>
+
+                    <p><b>Total Checks:</b> ${totalChecks}</p>
+                `;
+
+                document.getElementById("result").style.display = "block";
+
+                // Console output
+                console.log("Entered Word:", word);
+                console.log("Reversed Word:", reverseWord(word));
+                console.log("Palindrome:", result);
+                console.log("Total Checks:", totalChecks);
+
+                // Popup
+                alert(message);
+
+            }
+
+            catch(error) {
+
+                alert(error.message);
+
+                console.error("Error:", error.message);
+
+                document.getElementById("result").style.display = "none";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

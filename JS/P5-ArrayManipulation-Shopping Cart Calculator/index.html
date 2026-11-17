@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Shopping Cart</title>
+
+    <!-- CSS SECTION -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3efff;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #c5b8e8;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #6335a5;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+        }
+
+        .form-section {
+            background-color: #f8f5ff;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #493477;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #c9b9e8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 15px;
+            background-color: #7044b8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #512b91;
+        }
+
+        .secondary {
+            background-color: #9274c9;
+        }
+
+        .danger {
+            background-color: #d9536f;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #7044b8;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f5ff;
+        }
+
+        .summary {
+            background-color: #f8f5ff;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .summary p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .final {
+            font-size: 23px;
+            font-weight: bold;
+            color: #6335a5;
+        }
+
+        .analysis {
+            background-color: #f0eaff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .empty {
+            text-align: center;
+            color: gray;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .controls button {
+            margin-top: 5px;
+        }
+
+        .small {
+            font-size: 13px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+
+            .cart-table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML SECTION -->
+
+    <div class="container">
+
+        <h1>Smart Shopping Cart</h1>
+
+        <p class="subtitle">
+            Add products, manage your cart and calculate your bill!
+        </p>
+
+        <!-- PRODUCT INPUT SECTION -->
+
+        <div class="form-section">
+
+            <h2>Add New Product</h2>
+
+            <label>Product Name:</label>
+            <input type="text" id="productName"
+                   placeholder="Enter product name">
+
+            <label>Price (₹):</label>
+            <input type="number" id="price"
+                   placeholder="Enter product price" min="0.01" step="0.01">
+
+            <label>Quantity:</label>
+            <input type="number" id="quantity"
+                   placeholder="Enter quantity" min="1" step="1">
+
+            <button onclick="addProduct()">
+                + Add Product
+            </button>
+
+            <button class="secondary" onclick="addFirst()">
+                Add as First Item
+            </button>
+
+        </div>
+
+
+        <!-- SHOPPING CART TABLE -->
+
+        <h2>My Shopping Cart</h2>
+
+        <table class="cart-table">
+
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="cartTable">
+
+                <tr>
+                    <td colspan="5" class="empty">
+                        Your shopping cart is empty!
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <!-- ARRAY OPERATION BUTTONS -->
+
+        <h2>Cart Management</h2>
+
+        <div class="controls">
+
+            <button class="secondary" onclick="removeLast()">
+                Remove Last (pop)
+            </button>
+
+            <button class="secondary" onclick="removeFirst()">
+                Remove First (shift)
+            </button>
+
+            <button class="danger" onclick="clearCart()">
+                Clear Cart
+            </button>
+
+        </div>
+
+        <p class="small">
+            You can also remove any individual product using
+            the Remove button in the table.
+        </p>
+
+
+        <!-- BILL SUMMARY -->
+
+        <div class="summary">
+
+            <h2>Bill Summary</h2>
+
+            <p>Total Products: <b id="totalProducts">0</b></p>
+
+            <p>Total Quantity: <b id="totalQuantity">0</b></p>
+
+            <p>Total Amount: ₹<b id="totalAmount">0.00</b></p>
+
+            <p>Discount: ₹<b id="discount">0.00</b></p>
+
+            <hr>
+
+            <p class="final">
+                Final Amount: ₹<span id="finalAmount">0.00</span>
+            </p>
+
+            <p class="small">
+                10% discount is applied when the total amount
+                is ₹5,000 or more.
+            </p>
+
+        </div>
+
+
+        <!-- ITEM ANALYSIS -->
+
+        <div class="analysis">
+
+            <h2>Item Summary</h2>
+
+            <p><b>Expensive Products (Price above ₹2,000):</b></p>
+
+            <div id="expensiveProducts">
+                No expensive products.
+            </div>
+
+            <hr>
+
+            <p>
+                <b>Most Expensive Product:</b>
+                <span id="maxProduct">None</span>
+            </p>
+
+            <p>
+                <b>Cheapest Product:</b>
+                <span id="minProduct">None</span>
+            </p>
+
+            <hr>
+
+            <p><b>First Three Products (slice):</b></p>
+
+            <div id="preview">
+                No products available.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT SECTION -->
+
+    <script>
+
+        // Creating an empty array
+        let cart = [];
+
+        console.log("Smart Shopping Cart Loaded");
+
+
+        // FUNCTION 1: ADD PRODUCT USING push()
+
+        function addProduct() {
+
+            let name = document.getElementById("productName").value.trim();
+
+            let priceInput = document.getElementById("price").value;
+
+            let quantityInput = document.getElementById("quantity").value;
+
+            let price = Number(priceInput);
+
+            let quantity = Number(quantityInput);
+
+
+            // Form validation
+            if (name === "" || priceInput === "" || quantityInput === "") {
+
+                alert("Please fill all the fields!");
+                return;
+
+            }
+
+            if (!Number.isFinite(price) || price <= 0 ||
+                !Number.isInteger(quantity) || quantity <= 0) {
+
+                alert("Enter a valid price and quantity!");
+                return;
+
+            }
+
+
+            // Creating product object
+            let product = {
+                name: name,
+                price: price,
+                quantity: quantity
+            };
+
+
+            // Adding product at the end
+            cart.push(product);
+
+            alert(name + " added to cart!");
+
+            // Clear input fields
+            document.getElementById("productName").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+            // Update cart
+            updateCart();
+
+        }
+
+
+        // FUNCTION 2: ADD PRODUCT USING unshift()
+
+        function addFirst() {
+
+            let name = document.getElementById("productName").value.trim();
+
+            let priceInput = document.getElementById("price").value;
+
+            let quantityInput = document.getElementById("quantity").value;
+
+            let price = Number(priceInput);
+
+            let quantity = Number(quantityInput);
+
+
+            if (name === "" || priceInput === "" || quantityInput === "") {
+
+                alert("Please fill all the fields!");
+                return;
+
+            }
+
+            if (!Number.isFinite(price) || price <= 0 ||
+                !Number.isInteger(quantity) || quantity <= 0) {
+
+                alert("Enter a valid price and quantity!");
+                return;
+
+            }
+
+
+            let product = {
+                name: name,
+                price: price,
+                quantity: quantity
+            };
+
+
+            // Adding product at the beginning
+            cart.unshift(product);
+
+            alert(name + " added at the beginning of cart!");
+
+            document.getElementById("productName").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+            updateCart();
+
+        }
+
+
+        // FUNCTION 3: REMOVE PRODUCT USING splice()
+
+        function removeProduct(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        }
+
+
+        // FUNCTION 4: REMOVE LAST PRODUCT USING pop()
+
+        function removeLast() {
+
+            if (cart.length === 0) {
+
+                alert("Cart is already empty!");
+                return;
+
+            }
+
+            cart.pop();
+
+            updateCart();
+
+        }
+
+
+        // FUNCTION 5: REMOVE FIRST PRODUCT USING shift()
+
+        function removeFirst() {
+
+            if (cart.length === 0) {
+
+                alert("Cart is already empty!");
+                return;
+
+            }
+
+            cart.shift();
+
+            updateCart();
+
+        }
+
+
+        // FUNCTION 6: CLEAR CART
+
+        function clearCart() {
+
+            if (cart.length === 0) {
+
+                alert("Cart is already empty!");
+                return;
+
+            }
+
+            if (confirm("Are you sure you want to clear the cart?")) {
+
+                cart = [];
+
+                updateCart();
+
+            }
+
+        }
+
+
+        // FUNCTION 7: UPDATE CART USING ARRAY METHODS
+
+        function updateCart() {
+
+            let table = document.getElementById("cartTable");
+
+            table.innerHTML = "";
+
+
+            // Using forEach() to display products
+            cart.forEach(function(product, index) {
+
+                let amount = product.price * product.quantity;
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${escapeHTML(product.name)}</td>
+                        <td>₹${product.price.toFixed(2)}</td>
+                        <td>${product.quantity}</td>
+                        <td>₹${amount.toFixed(2)}</td>
+                        <td>
+                            <button class="danger"
+                            onclick="removeProduct(${index})">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                `;
+
+            });
+
+
+            if (cart.length === 0) {
+
+                table.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty">
+                            Your shopping cart is empty!
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+
+            // Using map() to create price array
+            let prices = cart.map(function(product) {
+
+                return product.price;
+
+            });
+
+
+            // Calculate total amount
+            let total = 0;
+
+            cart.forEach(function(product) {
+
+                total += product.price * product.quantity;
+
+            });
+
+
+            // Calculate total quantity
+            let totalQuantity = 0;
+
+            cart.forEach(function(product) {
+
+                totalQuantity += product.quantity;
+
+            });
+
+
+            // Using filter() for expensive products
+            let expensive = cart.filter(function(product) {
+
+                return product.price > 2000;
+
+            });
+
+
+            // Calculate discount
+            let discount = 0;
+
+            if (total >= 5000) {
+
+                discount = total * 0.10;
+
+            }
+
+
+            let finalAmount = total - discount;
+
+
+            // Display bill summary
+            document.getElementById("totalProducts").innerText = cart.length;
+
+            document.getElementById("totalQuantity").innerText = totalQuantity;
+
+            document.getElementById("totalAmount").innerText = total.toFixed(2);
+
+            document.getElementById("discount").innerText = discount.toFixed(2);
+
+            document.getElementById("finalAmount").innerText = finalAmount.toFixed(2);
+
+
+            // Display expensive products
+            let expensiveList = "";
+
+            expensive.forEach(function(product) {
+
+                expensiveList += `
+                    <p>${escapeHTML(product.name)} - ₹${product.price.toFixed(2)}</p>
+                `;
+
+            });
+
+            document.getElementById("expensiveProducts").innerHTML =
+                expensiveList || "No expensive products.";
+
+
+            // Find maximum and minimum prices
+            if (prices.length > 0) {
+
+                let maxPrice = Math.max(...prices);
+
+                let minPrice = Math.min(...prices);
+
+                let maxItem = cart.find(function(product) {
+                    return product.price === maxPrice;
+                });
+
+                let minItem = cart.find(function(product) {
+                    return product.price === minPrice;
+                });
+
+                document.getElementById("maxProduct").innerText =
+                    maxItem.name + " (₹" + maxPrice + ")";
+
+                document.getElementById("minProduct").innerText =
+                    minItem.name + " (₹" + minPrice + ")";
+
+            }
+            else {
+
+                document.getElementById("maxProduct").innerText = "None";
+
+                document.getElementById("minProduct").innerText = "None";
+
+            }
+
+
+            // Using slice() to display first three products
+            let firstThree = cart.slice(0, 3);
+
+            let previewText = "";
+
+            firstThree.forEach(function(product) {
+
+                previewText += product.name + ", ";
+
+            });
+
+            document.getElementById("preview").innerText =
+                previewText.slice(0, -2) || "No products available.";
+
+
+            // Console output
+            console.log("Current Cart:", cart);
+
+            console.log("Prices Array:", prices);
+
+            console.log("Expensive Products:", expensive);
+
+            console.log("Total Amount:", total);
+
+            console.log("Discount:", discount);
+
+            console.log("Final Amount:", finalAmount);
+
+            console.log("Maximum Price:", prices.length ? Math.max(...prices) : "None");
+
+            console.log("Minimum Price:", prices.length ? Math.min(...prices) : "None");
+
+        }
+
+
+        // Escape user input before inserting it into HTML
+        function escapeHTML(value) {
+
+            return value.replace(/[&<>"']/g, function(character) {
+
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                }[character];
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
