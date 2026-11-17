@@ -234,3 +234,272 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format used to store and exchange data between a client and a server.
+
+JavaScript provides methods such as fetch() and jQuery AJAX methods to retrieve JSON data from external APIs and display it dynamically on a webpage.
+
+In this practical, JSON data is fetched using the Fetch API and jQuery $.getJSON() method and displayed in an HTML table.
+
+
+1. JSON (JAVASCRIPT OBJECT NOTATION):
+
+JSON is a lightweight text-based format used to exchange data between applications.
+
+It stores data in key-value pairs and supports objects, arrays, strings, numbers, Boolean values, and null.
+
+Example:
+{
+    "id": 1,
+    "name": "Rahul",
+    "email": "rahul@gmail.com"
+}
+
+In this practical, JSON data contains user information such as ID, name, email, address, and company details.
+
+
+2. API (APPLICATION PROGRAMMING INTERFACE):
+
+An API allows two different applications to communicate and exchange data.
+
+A Web API provides data over the internet, usually through HTTP requests.
+
+In this practical, the following API is used:
+
+https://jsonplaceholder.typicode.com/users
+
+It provides sample user data in JSON format.
+
+The Fetch API and jQuery are used to retrieve this data from the server.
+
+
+3. FETCH API:
+
+The Fetch API is a built-in JavaScript feature used to make HTTP requests and retrieve data from servers.
+
+It returns a Promise that resolves to a Response object.
+
+Example:
+fetch(url);
+
+The fetch() method is used to request JSON data from the API.
+
+The response is processed using the following methods:
+
+a) response.ok:
+Checks whether the HTTP response status indicates success.
+
+b) response.json():
+Reads the response body and parses it as JSON.
+
+In this practical, fetch() is used inside an asynchronous function to retrieve user information.
+
+
+4. PROMISES IN JAVASCRIPT:
+
+A Promise represents the eventual completion or failure of an asynchronous operation.
+
+It has three states:
+
+- Pending : Operation is still in progress.
+- Fulfilled : Operation completed successfully.
+- Rejected : Operation failed.
+
+The Fetch API returns a Promise that can be handled using then(), catch(), or async/await.
+
+In this practical, async and await are used to handle asynchronous API requests.
+
+
+5. ASYNC AND AWAIT:
+
+async and await are JavaScript keywords used to handle asynchronous operations in a simpler way.
+
+a) async:
+Declares an asynchronous function that returns a Promise.
+
+b) await:
+Pauses the execution of the asynchronous function until the Promise is settled.
+
+Example:
+async function loadFetch() {
+    let response = await fetch(url);
+    let data = await response.json();
+}
+
+In this practical, async and await are used to wait for the API response and convert it into JSON data.
+
+
+6. ERROR HANDLING USING TRY-CATCH:
+
+try-catch is used to handle errors that may occur during program execution.
+
+- try : Contains code that may generate an error.
+- catch : Handles the error if an exception occurs.
+- throw : Generates a custom error.
+
+Example:
+if (!response.ok) {
+    throw new Error("Failed to load data");
+}
+
+In this practical, try-catch handles errors during data fetching and JSON processing.
+
+Note: fetch() does not automatically throw an error for HTTP error status codes such as 404, so response.ok is checked separately.
+
+
+7. JQUERY:
+
+jQuery is a JavaScript library that simplifies HTML DOM manipulation, event handling, animations, and AJAX operations.
+
+It provides shorter syntax for performing common JavaScript tasks.
+
+The jQuery library is included using a CDN link.
+
+Example:
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+In this practical, jQuery is used to retrieve JSON data from the API.
+
+
+8. AJAX (ASYNCHRONOUS JAVASCRIPT AND XML):
+
+AJAX is a technique used to exchange data with a server asynchronously without reloading the entire webpage.
+
+Although AJAX originally referred to XML, modern AJAX applications commonly exchange JSON data.
+
+In this practical, jQuery's $.getJSON() method is used to retrieve JSON data asynchronously.
+
+Example:
+$.getJSON(url, function(data) {
+    console.log(data);
+});
+
+The callback function executes after the JSON data is successfully retrieved.
+
+
+9. JQUERY $.getJSON() METHOD:
+
+The $.getJSON() method is a jQuery AJAX method used to make an HTTP GET request and automatically parse the response as JSON.
+
+Syntax:
+$.getJSON(url, successCallback);
+
+In this practical, it retrieves user data and passes the response to a callback function.
+
+The fail() method is used to handle request failures.
+
+Example:
+$.getJSON(url, function(data) {
+    console.log(data);
+}).fail(function() {
+    console.log("Error loading data");
+});
+
+
+10. DOM MANIPULATION AND DYNAMIC TABLE GENERATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+JavaScript uses DOM methods to dynamically create and modify HTML elements.
+
+Methods and properties used:
+
+- getElementById() : Selects an element using its ID.
+- innerHTML : Modifies the HTML content of an element.
+- innerText : Displays or modifies text content.
+- insertRow() : Inserts a new row into an HTML table.
+- insertCell() : Inserts a new cell into a table row.
+- textContent : Sets or retrieves the text content of an element.
+
+In this practical, these methods are used to dynamically generate table rows and display user information.
+
+
+11. ARRAY METHODS AND SEARCH FUNCTIONALITY:
+
+The filter() method creates a new array containing elements that satisfy a specified condition.
+
+Example:
+let filtered = allUsers.filter(function(user) {
+    return user.name.toLowerCase().includes(search);
+});
+
+In this practical, filter() is used to search users by name or email.
+
+The following string methods are also used:
+
+a) toLowerCase():
+Converts a string into lowercase to perform case-insensitive searching.
+
+b) includes():
+Checks whether a string contains a specified substring.
+
+The search feature displays only those users whose names or email addresses match the entered search text.
+
+
+12. WORKING OF THE PRACTICAL:
+
+The webpage contains a JSON Data Viewer with two options: Load using Fetch and Load using jQuery.
+
+The API URL is stored in a constant variable, and an empty array named allUsers is created to store the retrieved user data.
+
+When the Load using Fetch button is clicked, the loadFetch() function executes an asynchronous API request using fetch() and await.
+
+The response status is checked using response.ok. If successful, response.json() converts the response body into JavaScript data.
+
+When the Load using jQuery button is clicked, loadJQuery() uses $.getJSON() to retrieve JSON data asynchronously.
+
+Both methods store the retrieved data in allUsers and call the common displayUsers() function.
+
+The displayUsers() function dynamically creates table rows and cells using insertRow() and insertCell(). It displays user ID, name, email, city, and company details.
+
+The search functionality uses filter(), toLowerCase(), and includes() to find users by name or email.
+
+Finally, the total number of displayed users is updated dynamically, and appropriate success or error messages are shown on the webpage.
+
+Thus, the practical demonstrates JSON data handling, Fetch API, jQuery AJAX, async/await, Promises, error handling, DOM manipulation, and dynamic table generation.
+
+-->
+
+
+
+
+
