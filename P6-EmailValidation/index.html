@@ -326,4 +326,251 @@
     </script>
 
 </body>
+    
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JavaScript provides various built-in string methods and Regular Expressions (RegEx) to validate, search, extract, and manipulate text. These features are useful for email validation, data extraction, and text analysis.
+
+1. STRINGS IN JAVASCRIPT:
+
+A string is a sequence of characters enclosed within single quotes, double quotes, or backticks.
+
+Example:
+let name = "Sanskruti";
+
+Strings are used to store and manipulate text such as names, email addresses, and paragraphs.
+
+2. STRING METHODS:
+
+JavaScript provides several built-in methods to manipulate strings.
+
+a) trim():
+Removes whitespace from the beginning and end of a string.
+
+Example:
+email.trim();
+
+In this practical, it removes extra spaces from the entered email address.
+
+b) split():
+Converts a string into an array based on a specified separator.
+
+Example:
+paragraph.split("");
+
+It is used to convert the paragraph into individual characters.
+
+c) join():
+Combines array elements into a single string.
+
+Example:
+characters.join("");
+
+It is used to convert reversed characters back into a string.
+
+d) length:
+Returns the total number of characters in a string, including spaces and special characters.
+
+Example:
+paragraph.length;
+
+e) match():
+Searches a string for matches against a regular expression and returns the matching results.
+
+Example:
+paragraph.match(/[aeiou]/gi);
+
+It is used to find all vowels in the entered paragraph.
+
+3. REGULAR EXPRESSIONS (REGEX):
+
+A Regular Expression is a sequence of characters that defines a search pattern. It is used for pattern matching, validation, and data extraction.
+
+In JavaScript, regular expressions are written between forward slashes (/ /).
+
+Common Regex symbols:
+
+- ^ : Matches the beginning of a string.
+- $ : Matches the end of a string.
+- + : Matches one or more occurrences.
+- \s : Matches whitespace characters.
+- \S : Matches non-whitespace characters.
+- . : Matches any character except line terminators.
+- [ ] : Defines a character set.
+- [^ ] : Matches characters not included in the set.
+
+4. EMAIL VALIDATION USING REGEX:
+
+Email validation checks whether the entered email address follows a basic email format.
+
+In this practical, the following regular expression is used:
+
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+Explanation:
+
+- ^ : Starts matching from the beginning.
+- [^\s@]+ : Matches one or more characters that are neither whitespace nor @.
+- @ : Matches the @ symbol.
+- \. : Matches a dot.
+- $ : Ensures matching reaches the end of the string.
+
+The test() method checks whether the entered email matches the specified pattern.
+
+Example:
+emailPattern.test(email);
+
+It returns true if the pattern matches and false otherwise.
+
+Note: This is a basic email format check, not complete validation of every possible email address.
+
+5. REGEX FLAGS:
+
+Regular expressions support flags that modify their matching behavior.
+
+Common flags:
+
+- g : Global flag, finds all matches.
+- i : Case-insensitive flag, ignores uppercase and lowercase differences.
+- gi : Combines both global and case-insensitive matching.
+
+In this practical, /[aeiou]/gi is used to count all vowels regardless of their case.
+
+6. VOWEL COUNT USING REGEX:
+
+The match() method is used with a regular expression to identify all vowels in the paragraph.
+
+Example:
+let vowels = paragraph.match(/[aeiou]/gi);
+
+The expression [aeiou] matches any vowel, while the gi flags find all vowels without considering case.
+
+The ternary operator is used to handle cases where no vowels are found.
+
+Example:
+let vowelCount = vowels ? vowels.length : 0;
+
+7. WORD COUNT USING REGEX:
+
+The regular expression /\S+/g is used to identify words by matching sequences of non-whitespace characters.
+
+Example:
+let words = paragraph.trim().match(/\S+/g);
+
+The length property is then used to calculate the total number of matched words.
+
+8. CHARACTER COUNT:
+
+The length property returns the total number of characters in a string.
+
+Example:
+let charCount = paragraph.length;
+
+It counts letters, spaces, numbers, and special characters.
+
+9. REVERSING A STRING:
+
+The split(), reverse(), and join() methods are used together to reverse a string.
+
+Example:
+let reversedText = paragraph.split("").reverse().join("");
+
+Working:
+- split("") converts the string into an array of characters.
+- reverse() reverses the array elements.
+- join("") combines the reversed characters into a string.
+
+10. DOM MANIPULATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects. JavaScript uses DOM methods to access and modify webpage elements dynamically.
+
+Methods and properties used:
+
+- getElementById() : Selects an HTML element using its ID.
+- value : Retrieves the value entered by the user.
+- innerHTML : Inserts or modifies HTML content.
+- innerText : Displays or retrieves text content.
+- style.display : Controls the visibility of an element.
+- className : Changes the CSS class of an element.
+
+11. EVENT HANDLING AND VALIDATION:
+
+Events are actions performed by the user, such as clicking a button.
+
+In this practical, the onclick event is used to call the validateEmail() and analyzeText() functions.
+
+Input validation ensures that the user enters appropriate information before processing.
+
+If the email field is empty or the paragraph contains only whitespace, an appropriate error message is displayed using alert().
+
+The return statement stops further execution when the input is invalid.
+
+12. WORKING OF THE PRACTICAL:
+
+The webpage contains two main sections: Email Validation and Text Analysis.
+
+In the Email Validation section, the user enters an email address. The validateEmail() function retrieves the input, removes extra spaces using trim(), and checks its format using a regular expression and the test() method.
+
+If the email matches the pattern, a valid email message is displayed; otherwise, an invalid email message is shown.
+
+In the Text Analysis section, the user enters a paragraph. The analyzeText() function checks whether the paragraph is empty.
+
+If valid text is entered, JavaScript uses regular expressions to count vowels and words. The length property calculates the total number of characters.
+
+The split(), reverse(), and join() methods are used to reverse the paragraph.
+
+Finally, all results are displayed dynamically on the webpage using DOM manipulation and are also printed in the browser console.
+
+Thus, the practical demonstrates JavaScript string methods, Regular Expressions, email validation, pattern matching, data extraction, and text analysis.
+
+-->
