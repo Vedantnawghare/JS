@@ -717,3 +717,269 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```html
+<!--
+THEORY:
+
+JavaScript is a scripting language used to create interactive and dynamic web applications. It provides arrays and objects to store and manage data. Array methods are used to add, remove, search, filter, and manipulate data efficiently.
+
+1. ARRAYS IN JAVASCRIPT:
+
+An array is a collection of multiple values stored in a single variable. Arrays are used to store and manage a list of elements.
+
+Example:
+let cart = [];
+
+In this practical, an array named cart is used to store all the products added by the user.
+
+
+2. OBJECTS IN JAVASCRIPT:
+
+An object is a collection of data stored in key-value pairs. It is used to represent entities with different properties.
+
+Example:
+let product = {
+    name: "Laptop",
+    price: 50000,
+    quantity: 2
+};
+
+In this practical, each product is stored as an object containing its name, price, and quantity.
+
+
+3. ARRAY METHODS:
+
+JavaScript provides several built-in array methods to manipulate arrays.
+
+a) push():
+Adds one or more elements at the end of an array.
+
+Example:
+cart.push(product);
+
+b) unshift():
+Adds one or more elements at the beginning of an array.
+
+Example:
+cart.unshift(product);
+
+c) pop():
+Removes the last element from an array.
+
+Example:
+cart.pop();
+
+d) shift():
+Removes the first element from an array.
+
+Example:
+cart.shift();
+
+e) splice():
+Adds or removes elements at a specified position in an array.
+
+Example:
+cart.splice(index, 1);
+
+In this practical, it removes a particular product from the cart.
+
+f) forEach():
+Executes a function for each element of an array.
+
+Example:
+cart.forEach(function(product) {
+    console.log(product.name);
+});
+
+It is used to display products and calculate the total amount and quantity.
+
+g) map():
+Creates a new array by applying a function to every element of the original array.
+
+Example:
+let prices = cart.map(function(product) {
+    return product.price;
+});
+
+h) filter():
+Creates a new array containing elements that satisfy a given condition.
+
+Example:
+let expensive = cart.filter(function(product) {
+    return product.price > 2000;
+});
+
+In this practical, it identifies products having a price above ₹2,000.
+
+i) find():
+Returns the first element that satisfies a given condition.
+
+Example:
+let item = cart.find(function(product) {
+    return product.price === maxPrice;
+});
+
+It is used to find the most expensive and cheapest products.
+
+j) slice():
+Returns a portion of an array without modifying the original array.
+
+Example:
+let firstThree = cart.slice(0, 3);
+
+It is used to display the first three products in the cart.
+
+
+4. OBJECT AND ARRAY OPERATIONS:
+
+Objects and arrays can be used together to store and manage complex data.
+
+In this practical:
+- An array stores multiple product objects.
+- Each object contains product name, price, and quantity.
+- Array methods are used to add, remove, search, and filter products.
+- The spread operator (...) passes array elements as individual arguments to functions.
+
+Example:
+Math.max(...prices);
+Math.min(...prices);
+
+These methods are used to find the maximum and minimum product prices.
+
+
+5. DOM MANIPULATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects. JavaScript uses DOM methods to access and modify webpage elements dynamically.
+
+Methods and properties used:
+
+- getElementById() : Selects an HTML element using its ID.
+- innerHTML : Inserts or modifies HTML content.
+- innerText : Sets or retrieves the visible text of an element.
+- value : Retrieves the value entered by the user.
+
+In this practical, DOM manipulation is used to display cart items, update the bill summary, and show product analysis.
+
+
+6. USER INPUT AND VALIDATION:
+
+Input validation ensures that the user enters correct information before adding products to the cart.
+
+Methods used:
+
+- trim() : Removes whitespace from the beginning and end of a string.
+- Number() : Converts input into a numeric value.
+- Number.isFinite() : Checks whether a value is a finite number.
+- Number.isInteger() : Checks whether a value is an integer.
+- alert() : Displays an error or information message.
+- return : Stops further execution when validation fails.
+
+In this practical, product name must not be empty, price must be greater than zero, and quantity must be a positive integer.
+
+
+7. BILL CALCULATION:
+
+The shopping cart calculates the total amount based on product prices and quantities.
+
+The formulas used are:
+
+Product Amount = Price × Quantity
+
+Total Amount = Sum of all Product Amounts
+
+Discount = Total Amount × 10 / 100
+
+Final Amount = Total Amount - Discount
+
+In this practical, a 10% discount is applied when the total cart amount is ₹5,000 or more.
+
+Example:
+if (total >= 5000) {
+    discount = total * 0.10;
+}
+
+
+8. MATH METHODS:
+
+JavaScript provides built-in Math methods to perform mathematical operations.
+
+- Math.max() : Returns the largest number.
+- Math.min() : Returns the smallest number.
+
+In this practical, these methods are used to identify the most expensive and cheapest products.
+
+
+9. STRING MANIPULATION AND HTML ESCAPING:
+
+The replace() method is used to replace matching characters in a string.
+
+Regular expressions are used to identify special HTML characters.
+
+In this practical, the escapeHTML() function converts special characters such as <, >, &, and quotes into their corresponding HTML entities before displaying product names using innerHTML.
+
+This helps prevent user-entered text from being interpreted as HTML code.
+
+
+10. CONFIRMATION AND EVENT HANDLING:
+
+JavaScript provides built-in functions to interact with users.
+
+- alert() : Displays a popup message.
+- confirm() : Displays a confirmation dialog with OK and Cancel options.
+
+In this practical, confirm() asks the user before clearing the entire shopping cart.
+
+The onclick event is used to execute functions when buttons are clicked.
+
+
+11. WORKING OF THE PRACTICAL:
+
+The webpage contains a shopping cart where users can enter product names, prices, and quantities.
+
+The products are stored as objects inside an array named cart.
+
+The user can add products at the beginning or end of the cart using unshift() and push(). Products can also be removed using pop(), shift(), and splice().
+
+The forEach() method is used to display products and calculate the total amount and quantity. The map() method creates an array of product prices, while filter() identifies expensive products.
+
+The find() method identifies the most expensive and cheapest products, and slice() displays the first three products.
+
+A 10% discount is applied when the total amount reaches ₹5,000 or more. The final bill is dynamically displayed on the webpage.
+
+Finally, console.log() displays cart information and calculation results in the browser console.
+
+Thus, the practical demonstrates JavaScript arrays, objects, array methods, DOM manipulation, input validation, mathematical operations, and discount calculation.
+
+-->
+```
+
+
+
+
