@@ -185,3 +185,179 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JavaScript is a scripting language used to make web pages interactive and dynamic. It provides features such as variables, functions, template literals, destructuring, and DOM manipulation.
+
+1. VARIABLES IN JAVASCRIPT:
+
+Variables are used to store data in JavaScript. There are three ways to declare variables:
+
+a) var:
+- Used to declare variables.
+- Has function scope.
+- Can be redeclared and updated.
+
+Example:
+var shopName = "SIT Shopping Store";
+
+b) let:
+- Used to declare block-scoped variables.
+- Can be updated but cannot be redeclared in the same scope.
+
+Example:
+let totalAmount = 0;
+
+c) const:
+- Used to declare constants.
+- Has block scope.
+- Cannot be reassigned after declaration.
+
+Example:
+const GST = 18;
+
+
+2. TEMPLATE LITERALS:
+
+Template literals allow strings to be created using backticks (`).
+They support variable interpolation using ${} and allow multiline strings.
+
+Example:
+let name = "Sanskruti";
+let message = `Hello ${name}, Welcome!`;
+
+They are used in this practical to generate the billing receipt dynamically.
+
+
+3. DESTRUCTURING:
+
+Destructuring is an ES6 feature that allows values from arrays or objects to be extracted into separate variables.
+
+Example:
+let customerDetails = ["Rahul", "Laptop", 2];
+
+let [customerName, productName, itemQuantity] = customerDetails;
+
+It is used to extract customer name, product name, and quantity into separate variables.
+
+
+4. FUNCTIONS:
+
+A function is a reusable block of code that performs a specific task.
+
+In this practical, the calculateBill() function is used to retrieve user input, validate the data, calculate the bill, and display the final receipt.
+
+
+5. DOM MANIPULATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+JavaScript uses DOM methods and properties to access and modify webpage elements.
+
+Common methods and properties used:
+
+- getElementById() : Selects an HTML element using its ID.
+- value : Retrieves the value entered by the user.
+- innerHTML : Inserts or modifies HTML content.
+- style.display : Controls the visibility of an element.
+
+
+6. USER INPUT AND TYPE CONVERSION:
+
+The value property is used to retrieve data entered in input fields.
+
+The Number() function converts string input into numeric values so that arithmetic operations can be performed.
+
+Example:
+let price = Number(document.getElementById("price").value);
+
+
+7. INPUT VALIDATION:
+
+Input validation ensures that the user enters correct information before performing calculations.
+
+In this practical:
+- trim() checks for empty or whitespace-only text.
+- Empty fields are not accepted.
+- Price cannot be negative.
+- Quantity must be greater than zero.
+- alert() displays an error message for invalid input.
+- return stops further execution when validation fails.
+
+
+8. BILL CALCULATION:
+
+The billing calculator calculates the total cost of products using the following formulas:
+
+Subtotal = Price per Item × Quantity
+
+GST Amount = (Subtotal × GST Rate) / 100
+
+Total Amount = Subtotal + GST Amount
+
+In this practical, GST is set to 18% using the const keyword.
+
+
+9. toFixed() METHOD:
+
+The toFixed() method formats a number to a specified number of decimal places.
+
+Example:
+price.toFixed(2);
+
+It is used to display monetary values up to two decimal places.
+
+
+10. ALERT AND CONSOLE METHODS:
+
+- alert() : Displays a popup message to the user.
+- console.log() : Displays messages and calculated values in the browser console.
+
+
+11. WORKING OF THE PRACTICAL:
+
+The webpage contains a billing form where the user enters customer name, product name, price, and quantity.
+
+When the Generate Bill button is clicked, the calculateBill() function is executed.
+
+The program validates the entered details, calculates the subtotal, GST amount, and final total, and uses destructuring to extract customer details.
+
+Template literals are used to generate a formatted billing receipt dynamically. The receipt is displayed on the webpage using innerHTML.
+
+Finally, console.log() displays the billing information, and an alert message confirms successful bill generation.
+
+Thus, the practical demonstrates JavaScript variables (var, let, const), template literals, destructuring, functions, user input handling, validation, DOM manipulation, and basic arithmetic operations.
+-->
+
+
+
+
+
