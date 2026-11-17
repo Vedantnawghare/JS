@@ -261,4 +261,254 @@
     </script>
 
 </body>
+
+   
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```html
+<!--
+THEORY:
+
+JavaScript is a scripting language used to create interactive and dynamic web applications. It supports different types of functions, variable scope, closures, and exception handling to make programs reusable and reliable.
+
+
+1. TYPES OF FUNCTIONS IN JAVASCRIPT:
+
+Functions are reusable blocks of code designed to perform specific tasks.
+
+The following types of functions are used in this practical:
+
+a) Function Declaration:
+A function declared using the function keyword with a function name is called a function declaration.
+
+Example:
+function reverseWord(word) {
+    return word.split("").reverse().join("");
+}
+
+b) Function Expression:
+A function stored inside a variable is called a function expression.
+
+Example:
+const checkPalindrome = function(word) {
+    return word === reverseWord(word);
+};
+
+c) Arrow Function:
+Arrow functions provide a shorter syntax for writing functions using the => operator.
+
+Example:
+const displayMessage = (word, result) => {
+    return result ? `${word} is a Palindrome!`
+                  : `${word} is NOT a Palindrome!`;
+};
+
+d) Anonymous Function:
+A function without a name is called an anonymous function.
+
+Example:
+function(event) {
+    event.preventDefault();
+}
+
+In this practical, an anonymous function is used as a callback inside addEventListener().
+
+
+2. SCOPE IN JAVASCRIPT:
+
+Scope determines where variables can be accessed in a program.
+
+Types of scope:
+
+a) Global Scope:
+Variables declared outside functions are accessible throughout the program.
+
+Example:
+let collegeName = "SIT Nagpur";
+
+b) Function Scope:
+Variables declared inside a function using var are accessible only within that function.
+
+c) Block Scope:
+Variables declared using let and const inside a block are accessible only within that block.
+
+Example:
+if (true) {
+    let count = 10;
+}
+
+In this practical, collegeName is a global variable, while variables such as reversed and original are locally declared inside functions.
+
+
+3. CLOSURES:
+
+A closure is created when an inner function remembers and accesses variables from its outer function even after the outer function has finished executing.
+
+Example:
+function counter() {
+    let count = 0;
+
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+Here, the inner function remembers the count variable of the outer function.
+
+In this practical, the closure is used to maintain the total number of palindrome checks performed. The count value is preserved between function calls.
+
+
+4. EXCEPTION HANDLING (TRY-CATCH):
+
+Exception handling is used to handle runtime errors and prevent unexpected program termination.
+
+It uses the following keywords:
+
+a) try:
+Contains the code that may generate an error.
+
+b) catch:
+Handles the error generated inside the try block.
+
+c) throw:
+Used to generate a custom error.
+
+Example:
+try {
+    if (word === "") {
+        throw new Error("Please enter a word!");
+    }
+}
+catch(error) {
+    alert(error.message);
+}
+
+In this practical, try-catch is used to handle invalid input and display appropriate error messages.
+
+
+5. PALINDROME:
+
+A palindrome is a word that reads the same forward and backward.
+
+Examples:
+- MADAM - Palindrome
+- LEVEL - Palindrome
+- RADAR - Palindrome
+- HELLO - Not Palindrome
+
+A word is checked by comparing its original form with its reversed form.
+
+If both are equal, the word is a palindrome; otherwise, it is not.
+
+
+6. STRING METHODS:
+
+JavaScript provides built-in string methods to manipulate and process strings.
+
+Methods used in this practical:
+
+- split("") : Converts a string into an array of characters.
+- reverse() : Reverses the order of array elements.
+- join("") : Combines array elements into a string.
+- toLowerCase() : Converts a string into lowercase.
+- trim() : Removes whitespace from the beginning and end of a string.
+
+Example:
+let reversed = word.split("").reverse().join("");
+
+7. REGULAR EXPRESSIONS:
+
+A regular expression is a pattern used to validate and search text.
+
+In this practical, the following regular expression is used:
+
+/^[a-zA-Z]+$/
+
+It ensures that the user enters only alphabetic characters.
+
+The test() method checks whether the entered word matches the specified pattern.
+
+Example:
+if (!/^[a-zA-Z]+$/.test(word)) {
+    throw new Error("Please enter only alphabets!");
+}
+
+
+8. DOM MANIPULATION AND EVENT HANDLING:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+JavaScript uses DOM methods to access and modify webpage elements.
+
+Methods and properties used:
+
+- getElementById() : Selects an element using its ID.
+- addEventListener() : Attaches an event handler to an element.
+- value : Retrieves the entered input.
+- innerHTML : Displays dynamic HTML content.
+- style.display : Controls element visibility.
+- preventDefault() : Prevents the default form submission behavior.
+
+
+9. TEMPLATE LITERALS AND CONDITIONAL OPERATOR:
+
+Template literals are created using backticks (`) and allow variables to be inserted into strings using ${}.
+
+Example:
+`Hello ${word}!`
+
+The conditional (ternary) operator is a shorthand form of if-else.
+
+Example:
+result ? "success" : "error";
+
+In this practical, template literals generate dynamic result messages, while the ternary operator selects the appropriate CSS class based on the palindrome result.
+
+
+10. WORKING OF THE PRACTICAL:
+
+The webpage contains an input field where the user enters a word to check whether it is a palindrome.
+
+When the form is submitted, JavaScript prevents the default form submission and retrieves the entered word.
+
+The program validates the input using trim() and a regular expression. If invalid input is entered, a custom error is generated using throw and handled using try-catch.
+
+If the input is valid, the function reverses the word using split(), reverse(), and join(). The checkPalindrome() function compares the original and reversed words after converting them to lowercase.
+
+The closure function maintains the total number of checks performed.
+
+Finally, the result, reversed word, college name, and total number of checks are displayed dynamically on the webpage. An alert message and console output are also generated.
+
+Thus, the practical demonstrates JavaScript function types, variable scope, closures, exception handling, string manipulation, regular expressions, and DOM manipulation.
+
+-->
+```
