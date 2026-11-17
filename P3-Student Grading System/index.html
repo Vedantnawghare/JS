@@ -220,3 +220,182 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```html
+<!--
+THEORY:
+
+JavaScript is a scripting language used to make web pages interactive and dynamic. It provides control structures that help execute statements based on conditions. It is also used for form validation and processing user input.
+
+1. CONTROL STRUCTURES:
+
+Control structures determine the flow of execution of a program. They are mainly used to make decisions and execute specific blocks of code.
+
+Types of control structures:
+
+a) if statement:
+Executes a block of code only when the given condition is true.
+
+Example:
+if (marks >= 40) {
+    grade = "Pass";
+}
+
+b) if-else statement:
+Executes one block if the condition is true and another block if it is false.
+
+Example:
+if (marks >= 40) {
+    status = "Pass";
+}
+else {
+    status = "Fail";
+}
+
+c) if-else-if ladder:
+Used to check multiple conditions sequentially. The first condition that evaluates to true is executed.
+
+Example:
+if (marks >= 90) {
+    grade = "A+";
+}
+else if (marks >= 80) {
+    grade = "A";
+}
+else {
+    grade = "F";
+}
+
+In this practical, the if-else-if ladder is used to assign grades based on student marks.
+
+2. FORM VALIDATION:
+
+Form validation ensures that the user enters correct and appropriate information before processing the form.
+
+HTML validation attributes used:
+
+- required : Makes a field mandatory.
+- min      : Specifies the minimum permitted value.
+- max      : Specifies the maximum permitted value.
+- type="number" : Accepts numeric input.
+
+JavaScript validation methods used:
+
+- trim() : Removes whitespace from the beginning and end of a string.
+- Number() : Converts a value into a number.
+- alert() : Displays an error message.
+- return : Stops further execution when validation fails.
+
+In this practical, marks must be between 0 and 100, and all fields must be filled.
+
+3. VARIABLES:
+
+Variables are used to store data in JavaScript.
+
+The let keyword is used to declare variables whose values can be changed.
+
+Example:
+let name = "Rahul";
+let marks = 85;
+let grade;
+let status;
+
+In this practical, variables store student details, marks, grade, and result status.
+
+4. FUNCTIONS AND EVENT HANDLING:
+
+Events are actions performed by the user, such as clicking a button or submitting a form.
+
+The addEventListener() method is used to attach an event handler to an HTML element.
+
+In this practical, the submit event is used to process the grading form.
+
+The preventDefault() method prevents the form from submitting normally and reloading the webpage.
+
+5. DOM (DOCUMENT OBJECT MODEL):
+
+DOM represents an HTML document as a tree of objects. JavaScript uses DOM methods and properties to access and modify webpage elements.
+
+Methods and properties used:
+
+- getElementById() : Selects an element using its ID.
+- value : Retrieves the value entered by the user.
+- innerHTML : Inserts or modifies HTML content.
+- style.display : Controls the visibility of an element.
+
+6. TEMPLATE LITERALS:
+
+Template literals are created using backticks (`) and allow variables to be inserted into strings using ${}.
+
+Example:
+let message = `Hello ${name}, your grade is ${grade}`;
+
+They are used to display student details and the calculated result dynamically.
+
+7. CONDITIONAL (TERNARY) OPERATOR:
+
+The ternary operator is a shorthand form of the if-else statement. It evaluates a condition and returns one of two values.
+
+Syntax:
+condition ? value_if_true : value_if_false;
+
+In this practical, it is used to apply the fail CSS class when the student's grade is F.
+
+Example:
+grade === "F" ? "fail" : ""
+
+8. GRADING SYSTEM:
+
+The grading system assigns grades based on the marks entered by the student.
+
+The grading criteria used are:
+
+- Marks >= 90 : A+ (Excellent)
+- Marks >= 80 : A  (Very Good)
+- Marks >= 70 : B  (Good)
+- Marks >= 60 : C  (Average)
+- Marks >= 40 : D  (Pass)
+- Marks < 40  : F  (Fail)
+
+9. WORKING OF THE PRACTICAL:
+
+The webpage contains a student grading form where the user enters the student name, PRN number, and marks out of 100.
+
+When the form is submitted, JavaScript retrieves the entered details and validates the input.
+
+If the input is invalid, an alert message is displayed and further execution is stopped.
+
+If the input is valid, the if-else-if ladder checks the marks and assigns the appropriate grade and result status.
+
+The student's name, PRN number, marks, grade, and result are then displayed dynamically on the webpage using innerHTML.
+
+Finally, an alert message displays the assigned grade, and console.log() displays the student details and result in the browser console.
+
+Thus, the practical demonstrates JavaScript control structures, conditional statements, form validation, event handling, DOM manipulation, and dynamic result generation.
+
+-->
+```
