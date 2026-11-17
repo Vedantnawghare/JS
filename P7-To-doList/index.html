@@ -145,3 +145,250 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+The Document Object Model (DOM) is a programming interface that represents an HTML document as a tree of objects. JavaScript uses DOM manipulation and traversal methods to dynamically create, modify, add, and remove HTML elements.
+
+In this practical, DOM operations are used to develop a To-Do List application with add, edit, delete, and task completion features.
+
+
+1. DOCUMENT OBJECT MODEL (DOM):
+
+DOM represents an HTML document as a hierarchical tree structure in which every HTML element is treated as an object.
+
+JavaScript uses the DOM to access and modify webpage elements dynamically.
+
+Example:
+document.getElementById("task");
+
+It selects the HTML element having the specified ID.
+
+
+2. DOM ELEMENT SELECTION:
+
+JavaScript provides methods to select HTML elements.
+
+- getElementById() : Selects an element using its ID.
+- createElement() : Creates a new HTML element.
+- innerText : Gets or sets the text content of an element.
+- value : Retrieves the value entered in an input field.
+
+In this practical, these methods are used to retrieve task details and create new list elements dynamically.
+
+
+3. DOM ELEMENT CREATION:
+
+The createElement() method is used to create new HTML elements dynamically using JavaScript.
+
+Example:
+let li = document.createElement("li");
+
+It creates a new list item that can be added to the webpage.
+
+In this practical, createElement() is used to create list items, span elements, small elements, and buttons.
+
+
+4. DOM MANIPULATION METHODS:
+
+JavaScript provides methods to insert, modify, and remove HTML elements.
+
+a) appendChild():
+Adds a new child element at the end of the selected parent element.
+
+Example:
+taskList.appendChild(li);
+
+In this practical, it adds a newly created task to the task list.
+
+b) remove():
+Removes an element from the DOM.
+
+Example:
+delBtn.parentElement.remove();
+
+It removes the complete task when the Delete button is clicked.
+
+c) parentElement:
+Returns the parent element of the selected HTML element.
+
+In this practical, it is used to access the parent list item of the Delete button.
+
+d) children:
+Returns a live collection of an element's child elements.
+
+Example:
+list.children.length;
+
+It is used to calculate the total number of tasks in the list.
+
+
+5. DOM TRAVERSAL:
+
+DOM traversal is the process of moving through the hierarchical structure of HTML elements to access related elements.
+
+Common DOM traversal properties:
+
+- parentElement : Accesses the parent element.
+- children : Accesses all child elements.
+- firstElementChild : Accesses the first child element.
+- lastElementChild : Accesses the last child element.
+- nextElementSibling : Accesses the next sibling element.
+- previousElementSibling : Accesses the previous sibling element.
+
+In this practical, parentElement and children are used to access and manage task elements.
+
+
+6. EVENT HANDLING:
+
+Events are actions performed by the user, such as clicking a button or entering text.
+
+In this practical, the onclick event is used to execute JavaScript functions when buttons are clicked.
+
+Different button operations:
+
+- Add button : Calls addTask() to add a new task.
+- Done button : Marks a task as completed.
+- Edit button : Allows the user to modify a task.
+- Delete button : Removes a task from the list.
+
+
+7. FUNCTIONS IN JAVASCRIPT:
+
+A function is a reusable block of code designed to perform a specific task.
+
+Functions used in this practical:
+
+a) addTask():
+Retrieves task details, validates the input, creates HTML elements, and adds a new task to the list.
+
+b) updateCount():
+Calculates and displays the total number of tasks using the children.length property.
+
+Functions help divide the program into smaller and reusable sections.
+
+
+8. CLASSLIST AND CSS MANIPULATION:
+
+The classList property provides methods to add, remove, and toggle CSS classes of an HTML element.
+
+The toggle() method adds a class if it is absent and removes it if it is already present.
+
+Example:
+span.classList.toggle("completed");
+
+In this practical, it applies or removes the completed class when the Done button is clicked.
+
+The completed CSS class displays a line-through effect and changes the text color.
+
+
+9. USER INPUT AND VALIDATION:
+
+JavaScript retrieves user input using the value property.
+
+The trim() method removes leading and trailing whitespace from a string.
+
+Example:
+if (task.trim() === "") {
+    alert("Please enter a task!");
+    return;
+}
+
+It ensures that empty or whitespace-only tasks are not added to the list.
+
+10. PROMPT AND DYNAMIC UPDATING:
+
+The prompt() method displays a dialog box that accepts input from the user.
+
+Example:
+let newTask = prompt("Enter updated task:", span.innerText);
+
+In this practical, prompt() is used to get the updated task description.
+
+If the user enters a valid value, the innerText property updates the existing task without creating a new list item.
+
+The null check ensures that cancelling the prompt does not update the task.
+
+
+11. DATE INPUT HANDLING:
+
+The input element with type="date" allows the user to select a due date for a task.
+
+The value property retrieves the selected date.
+
+Example:
+let date = document.getElementById("date").value;
+
+The conditional OR operator (||) is used to display "No date" when the user does not select a date.
+
+
+12. WORKING OF THE PRACTICAL:
+
+The webpage contains a To-Do List application where users can enter a task and select its due date.
+
+When the Add Task button is clicked, the addTask() function retrieves the entered details and validates the task name.
+
+If the task is valid, JavaScript dynamically creates a list item using createElement() and adds the task description, due date, and action buttons.
+
+The appendChild() method inserts the new task into the task list.
+
+The Done button uses classList.toggle() to mark a task as completed or incomplete.
+
+The Edit button uses prompt() to accept an updated task description and modifies it using innerText.
+
+The Delete button uses parentElement and remove() to remove the selected task from the webpage.
+
+Finally, updateCount() uses children.length to display the total number of tasks. The input fields are cleared after adding a task.
+
+Thus, the practical demonstrates DOM traversal, DOM manipulation, dynamic element creation, event handling, CSS class manipulation, and CRUD operations (Create, Read, Update, Delete).
+
+-->
