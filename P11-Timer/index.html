@@ -153,3 +153,295 @@ document.getElementById("reset").addEventListener(
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JavaScript provides timer functions to execute code after a specified time or repeatedly at regular intervals. ES6 Modules allow JavaScript code to be divided into separate modules and reused through import and export statements.
+
+In this practical, a Countdown Timer is developed using setInterval(), setTimeout(), and ES6 dynamic module importing.
+
+
+1. JAVASCRIPT TIMERS:
+
+JavaScript provides timer functions to execute code after a specified time or repeatedly at regular intervals.
+
+The main timer functions are:
+
+a) setTimeout():
+Executes a function once after a specified delay.
+
+Syntax:
+setTimeout(function, delay);
+
+Example:
+setTimeout(function() {
+    alert("Time's Up!");
+}, 3000);
+
+In this practical, setTimeout() is used to clear the "Time's Up!" message after 3 seconds.
+
+b) setInterval():
+Executes a function repeatedly after a specified time interval until it is stopped.
+
+Syntax:
+setInterval(function, interval);
+
+Example:
+setInterval(function() {
+    time--;
+}, 1000);
+
+In this practical, setInterval() decreases the countdown value every 1000 milliseconds (1 second).
+
+
+2. DIFFERENCE BETWEEN setTimeout() AND setInterval():
+
+setTimeout():
+- Executes a function only once.
+- Runs after the specified delay.
+- Used for delayed operations.
+
+setInterval():
+- Executes a function repeatedly.
+- Runs after every specified interval.
+- Used for countdowns, clocks, and repeated updates.
+
+
+3. clearTimeout() AND clearInterval():
+
+These functions are used to stop scheduled timer operations.
+
+a) clearTimeout():
+Cancels a timer previously created using setTimeout().
+
+b) clearInterval():
+Stops repeated execution of a timer created using setInterval().
+
+Example:
+clearInterval(timer);
+
+In this practical, clearInterval() is used to stop the countdown when the timer reaches zero or when the Reset button is clicked.
+
+It is also used before starting a new countdown to prevent multiple intervals from running simultaneously.
+
+
+4. ES6 MODULES:
+
+ES6 Modules are used to divide JavaScript programs into smaller, reusable files or modules.
+
+They allow code to be shared between different JavaScript modules using import and export statements.
+
+The main concepts are:
+
+a) Export:
+The export keyword makes functions, variables, or classes available to other modules.
+
+Example:
+export function formatTime(s) {
+    return s;
+}
+
+b) Import:
+The import keyword is used to access functionality exported from another module.
+
+Example:
+import { formatTime } from "./timer.js";
+
+In this practical, the formatTime() function is exported from a dynamically created JavaScript module and imported into the main program.
+
+
+5. DYNAMIC IMPORT:
+
+Dynamic import allows JavaScript modules to be loaded during program execution instead of loading them through a static import declaration.
+
+It uses the import() function and returns a Promise.
+
+Syntax:
+import("./module.js");
+
+In this practical, dynamic import is performed using:
+
+const {formatTime} = await import(url);
+
+The imported function is extracted from the module namespace and used to format the countdown timer.
+
+
+6. BLOB AND OBJECT URL:
+
+A Blob (Binary Large Object) represents raw data stored as an object.
+
+In JavaScript, Blob can be used to create a file-like object containing text or other data.
+
+Example:
+new Blob([code], {type: "text/javascript"});
+
+The URL.createObjectURL() method creates a temporary URL for the Blob.
+
+Example:
+URL.createObjectURL(blob);
+
+In this practical, a Blob is created containing JavaScript module code. An object URL is generated and used to dynamically import that module.
+
+The URL.revokeObjectURL() method releases the temporary object URL after importing the module.
+
+
+7. MODULE SCRIPT:
+
+The type="module" attribute tells the browser to treat a script as a JavaScript module.
+
+Example:
+<script type="module">
+
+Module scripts support import and export statements, use their own scope, and are deferred by default.
+
+In this practical, type="module" is used to enable dynamic module importing and top-level await.
+
+
+8. TIME FORMATTING:
+
+The formatTime() function converts the total number of seconds into minutes and seconds.
+
+The following methods are used:
+
+a) Math.floor():
+Returns the largest integer less than or equal to a given number.
+
+Example:
+Math.floor(s / 60);
+
+It calculates the number of complete minutes.
+
+b) Modulus operator (%):
+Returns the remainder after division.
+
+Example:
+s % 60;
+
+It calculates the remaining seconds.
+
+c) String():
+Converts a value into a string.
+
+d) padStart():
+Adds characters at the beginning of a string until it reaches the specified length.
+
+Example:
+String(sec).padStart(2, "0");
+
+It ensures that the seconds are displayed using two digits.
+
+Example:
+90 seconds = 01:30
+
+
+9. USER INPUT AND VALIDATION:
+
+The value property is used to retrieve the number of seconds entered by the user.
+
+The Number() function converts the input into a numeric value.
+
+The Number.isInteger() method checks whether the value is an integer.
+
+In this practical:
+
+if (!Number.isInteger(time) || time <= 0) {
+    alert("Enter valid seconds!");
+    return;
+}
+
+It ensures that the user enters a positive whole number of seconds.
+
+The return statement stops execution if the input is invalid.
+
+
+10. DOM MANIPULATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+JavaScript uses DOM methods and properties to update webpage content dynamically.
+
+Methods and properties used:
+
+- getElementById() : Selects an HTML element using its ID.
+- innerText : Changes or retrieves the text content of an element.
+- value : Retrieves or modifies the value of an input field.
+- addEventListener() : Attaches an event handler to an element.
+
+In this practical, DOM manipulation is used to update the countdown display and show messages dynamically.
+
+
+11. EVENT HANDLING:
+
+Events are actions performed by the user, such as clicking a button.
+
+The addEventListener() method is used to attach event handlers to HTML elements.
+
+In this practical:
+
+- Start button triggers the startTimer() function.
+- Reset button triggers the resetTimer() function.
+- Click events control the countdown operations.
+
+
+12. WORKING OF THE PRACTICAL:
+
+The webpage contains a Countdown Timer with an input field where the user enters the number of seconds.
+
+The formatTime() function is exported from a dynamically created JavaScript module using the export keyword.
+
+The module code is stored in a Blob, and a temporary object URL is generated using URL.createObjectURL().
+
+The module is imported dynamically using import(), and the formatTime() function is accessed using await.
+
+When the Start button is clicked, the startTimer() function validates the entered seconds and displays the initial time.
+
+The setInterval() function decreases the remaining time every second and updates the timer display using innerText.
+
+When the countdown reaches zero, clearInterval() stops the timer and displays the "Time's Up!" message.
+
+The setTimeout() function automatically clears this message after 3 seconds.
+
+When the Reset button is clicked, resetTimer() stops the running interval, resets the timer display to 00:00, and clears the input field.
+
+The CSS max-width property and automatic margins are used to keep the timer layout within a suitable width and centered on the webpage.
+
+Thus, the practical demonstrates JavaScript timers, setTimeout(), setInterval(), clearInterval(), ES6 modules, dynamic imports, export functionality, Blob objects, DOM manipulation, and event handling.
+
+-->		
