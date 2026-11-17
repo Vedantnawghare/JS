@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seminar Schedule Planner</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2ff;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            max-width: 750px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px #0002;
+        }
+
+        h1 {
+            color: #1e40af;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 6px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .blue { background: #2563eb; }
+        .orange { background: #d97706; }
+        .green { background: #059669; }
+        .red { background: #dc2626; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 13px;
+        }
+
+        th {
+            background: #1e40af;
+            color: white;
+        }
+
+        .yellow { background: #fef08a; }
+        .purple { background: #ddd6fe; }
+        .lightgreen { background: #bbf7d0; }
+
+        td[contenteditable="true"] {
+            outline: 2px dashed blue;
+            background: #fff7ed;
+        }
+
+        #message {
+            margin-top: 20px;
+            color: #059669;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Seminar Schedule Planner</h1>
+    <p>Local Storage and Session Storage</p>
+
+    <button class="blue" onclick="saveLocal()">
+        Save Local Storage
+    </button>
+
+    <button class="orange" onclick="saveSession()">
+        Save Session Storage
+    </button>
+
+    <button class="green" onclick="toggleEdit()">
+        Enable Editing
+    </button>
+
+    <button class="red" onclick="resetTable()">
+        Reset Table
+    </button>
+
+    <table id="schedule">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Begin</th>
+                <th>End</th>
+                <th>Topic</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+            <tr>
+                <td>Monday</td>
+                <td class="yellow">8:00 AM</td>
+                <td class="purple">5:00 PM</td>
+                <td>Introduction to XML</td>
+            </tr>
+
+            <tr>
+                <td>Tuesday</td>
+                <td class="yellow">8:00 AM</td>
+                <td class="lightgreen">11:00 AM</td>
+                <td>XPath</td>
+            </tr>
+
+            <tr>
+                <td>Wednesday</td>
+                <td class="yellow">8:00 AM</td>
+                <td class="lightgreen">12:00 PM</td>
+                <td>XSL Formatting Objects</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Storage Operations</h3>
+
+    <button class="blue" onclick="loadLocal()">
+        Load Local
+    </button>
+
+    <button class="orange" onclick="loadSession()">
+        Load Session
+    </button>
+
+    <button class="red" onclick="clearLocal()">
+        Clear Local
+    </button>
+
+    <button class="red" onclick="clearSession()">
+        Clear Session
+    </button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+    let editMode = false;
+
+    // Save default table
+    let defaultData =
+        document.getElementById("tableBody").innerHTML;
+
+    // Enable and disable editing
+    function toggleEdit() {
+
+        editMode = !editMode;
+
+        let cells = document.querySelectorAll("#tableBody td");
+
+        cells.forEach(function(td) {
+            td.contentEditable = editMode;
+        });
+
+        document.getElementById("message").innerText =
+            editMode ? "Editing Enabled" : "Editing Disabled";
+    }
+
+    // Save in Local Storage
+    function saveLocal() {
+
+        let data = document.getElementById("tableBody").innerHTML;
+
+        localStorage.setItem("schedule", data);
+
+        document.getElementById("message").innerText =
+            "Saved in Local Storage!";
+    }
+
+    // Save in Session Storage
+    function saveSession() {
+
+        let data = document.getElementById("tableBody").innerHTML;
+
+        sessionStorage.setItem("schedule", data);
+
+        document.getElementById("message").innerText =
+            "Saved in Session Storage!";
+    }
+
+    // Load from Local Storage
+    function loadLocal() {
+
+        let data = localStorage.getItem("schedule");
+
+        if (data) {
+            document.getElementById("tableBody").innerHTML = data;
+            document.getElementById("message").innerText =
+                "Local Data Loaded!";
+        } else {
+            alert("No Local Data Found!");
+        }
+    }
+
+    // Load from Session Storage
+    function loadSession() {
+
+        let data = sessionStorage.getItem("schedule");
+
+        if (data) {
+            document.getElementById("tableBody").innerHTML = data;
+            document.getElementById("message").innerText =
+                "Session Data Loaded!";
+        } else {
+            alert("No Session Data Found!");
+        }
+    }
+
+    // Clear Local Storage
+    function clearLocal() {
+
+        localStorage.removeItem("schedule");
+
+        document.getElementById("message").innerText =
+            "Local Storage Cleared!";
+    }
+
+    // Clear Session Storage
+    function clearSession() {
+
+        sessionStorage.removeItem("schedule");
+
+        document.getElementById("message").innerText =
+            "Session Storage Cleared!";
+    }
+
+    // Reset Table
+    function resetTable() {
+
+        document.getElementById("tableBody").innerHTML =
+            defaultData;
+
+        document.getElementById("message").innerText =
+            "Table Reset Successfully!";
+    }
+
+    // Click event on table
+    document.getElementById("tableBody").onclick = function(e) {
+
+        if (!editMode) {
+            alert("You clicked: " + e.target.innerText);
+        }
+
+    };
+
+</script>
+
+</body>
+</html>
