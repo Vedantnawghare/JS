@@ -223,3 +223,371 @@ $(document).ready(function() {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+JavaScript and jQuery are used to develop interactive and dynamic web applications. They allow webpages to handle user events, manipulate DOM elements, store data in the browser, and communicate with external APIs using AJAX.
+
+In this practical, an Air Quality Monitoring application called AirPulse is developed using JavaScript and jQuery. It retrieves air quality information for different cities and displays AQI, PM2.5, and PM10 values dynamically.
+
+
+1. JQUERY:
+
+jQuery is a fast and lightweight JavaScript library that simplifies HTML DOM manipulation, event handling, animations, and AJAX operations.
+
+It provides shorter syntax for performing common JavaScript operations.
+
+The jQuery library is included using a CDN link.
+
+Example:
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+The basic jQuery syntax is:
+
+$(selector).action();
+
+In this practical, jQuery is used to select elements, handle events, update webpage content, and make AJAX requests.
+
+
+2. DOCUMENT READY FUNCTION:
+
+The $(document).ready() function ensures that JavaScript code executes only after the HTML document has been completely loaded and is ready for manipulation.
+
+Example:
+$(document).ready(function() {
+    // JavaScript and jQuery code
+});
+
+In this practical, all application functionality is placed inside this function to ensure that HTML elements are available before accessing them.
+
+
+3. DOM MANIPULATION USING JQUERY:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+jQuery provides methods to access, modify, and update HTML elements dynamically.
+
+Methods used in this practical:
+
+- $() : Selects HTML elements.
+- .text() : Gets or sets the text content of an element.
+- .empty() : Removes all child elements from a selected element.
+- .append() : Adds new content inside an element.
+- .attr() : Gets or sets HTML attributes.
+- .val() : Gets or sets the value of form elements.
+
+Example:
+$("#aqi").text(data.current.european_aqi);
+
+It dynamically displays the AQI value on the webpage.
+
+
+4. EVENT HANDLING:
+
+Events are actions performed by users, such as clicking buttons or submitting forms.
+
+jQuery provides the .on() method to attach event handlers to HTML elements.
+
+Events used in this practical:
+
+a) Submit Event:
+Triggered when the user submits the city selection form.
+
+Example:
+$("#cityForm").on("submit", function(e) {
+    e.preventDefault();
+});
+
+b) Click Event:
+Triggered when the user clicks the Save Favourite button.
+
+Example:
+$("#saveBtn").on("click", function() {
+    // Save favourite city
+});
+
+c) Delegated Click Event:
+Used to handle clicks on dynamically created buttons.
+
+Example:
+$("#favorites").on("click", "button", function() {
+    // Load selected favourite city
+});
+
+In this practical, event handling allows users to select cities, save favourites, and load previously saved cities.
+
+
+5. AJAX (ASYNCHRONOUS JAVASCRIPT AND XML):
+
+AJAX is a technique used to exchange data between a webpage and a server asynchronously without reloading the entire webpage.
+
+Although AJAX originally referred to XML, modern applications commonly exchange JSON data.
+
+In this practical, AJAX is used to retrieve air quality information from an external API.
+
+The $.ajax() method is used to send an HTTP request to the server and process the response.
+
+
+6. JQUERY $.ajax() METHOD:
+
+The $.ajax() method is used to make asynchronous HTTP requests to external servers.
+
+Example:
+$.ajax({
+    url: "API_URL",
+    method: "GET",
+    dataType: "json",
+    success: function(data) {
+        // Process response
+    },
+    error: function() {
+        // Handle error
+    }
+});
+
+Important properties:
+
+- url : Specifies the API endpoint.
+- method : Specifies the HTTP request method.
+- dataType : Specifies the expected response format.
+- success : Executes when the request succeeds.
+- error : Executes when the request fails.
+
+In this practical, the GET method retrieves air quality data in JSON format.
+
+
+7. API INTEGRATION:
+
+API stands for Application Programming Interface. It allows different applications to communicate and exchange information.
+
+In this practical, the Open-Meteo Air Quality API is used.
+
+API Endpoint:
+https://air-quality-api.open-meteo.com/v1/air-quality
+
+The API receives parameters such as:
+
+- latitude : Geographical latitude of the selected city.
+- longitude : Geographical longitude of the selected city.
+- current : Specifies the current weather or air quality variables to retrieve.
+
+The following parameters are requested:
+
+- european_aqi : European Air Quality Index.
+- pm2_5 : Concentration of fine particulate matter.
+- pm10 : Concentration of particulate matter with a diameter of 10 micrometres or less.
+
+The API returns data in JSON format, which is accessed using JavaScript.
+
+
+8. JSON DATA HANDLING:
+
+JSON (JavaScript Object Notation) is a lightweight data format used to exchange information between applications.
+
+It stores information in key-value pairs.
+
+Example:
+{
+    "current": {
+        "european_aqi": 45,
+        "pm2_5": 12.5,
+        "pm10": 20.3
+    }
+}
+
+In this practical, the API response is accessed using object properties.
+
+Example:
+data.current.european_aqi;
+data.current.pm2_5;
+data.current.pm10;
+
+These values are displayed dynamically on the webpage.
+
+
+9. LOCAL STORAGE:
+
+Local Storage is a browser-based storage mechanism that allows websites to store data persistently.
+
+Data remains available even after closing and reopening the browser, until it is manually removed.
+
+Methods used:
+
+- localStorage.setItem() : Stores data using a key-value pair.
+- localStorage.getItem() : Retrieves previously stored data.
+- localStorage.removeItem() : Removes a specific stored item.
+- localStorage.clear() : Removes all stored data from the current local storage area.
+
+In this practical, Local Storage is used to save favourite cities and remember the last selected city.
+
+Example:
+localStorage.setItem("lastCity", city);
+
+
+10. JSON.stringify() AND JSON.parse():
+
+Local Storage stores values as strings. Therefore, arrays and objects must be converted into strings before storing them.
+
+a) JSON.stringify():
+Converts a JavaScript object or array into a JSON string.
+
+Example:
+localStorage.setItem("favorites", JSON.stringify(favs));
+
+b) JSON.parse():
+Converts a JSON string back into a JavaScript object or array.
+
+Example:
+let favs = JSON.parse(
+    localStorage.getItem("favorites") || "[]"
+);
+
+In this practical, these methods are used to save and retrieve the list of favourite cities.
+
+
+11. JAVASCRIPT OBJECTS AND ARRAYS:
+
+Objects store data in key-value pairs, while arrays store multiple values in an ordered collection.
+
+In this practical, an object named cities stores the geographical coordinates of different cities.
+
+Example:
+const cities = {
+    "New Delhi": [28.61, 77.20],
+    "Mumbai": [19.07, 72.87]
+};
+
+Each city is associated with an array containing its latitude and longitude.
+
+These coordinates are passed to the API to retrieve the air quality information for the selected city.
+
+The currentCity variable stores the name of the currently selected city.
+
+
+12. ARRAY METHODS:
+
+The includes() method checks whether an array contains a particular value.
+
+Example:
+favs.includes(currentCity);
+
+It returns true if the city is already present in the favourites array; otherwise, it returns false.
+
+The push() method adds a new element to the end of an array.
+
+Example:
+favs.push(currentCity);
+
+In this practical, includes() prevents duplicate favourite cities, while push() adds new favourite cities.
+
+
+13. AUTOMATIC REFRESH USING setInterval():
+
+The setInterval() function repeatedly executes a function after a specified time interval.
+
+Syntax:
+setInterval(function, milliseconds);
+
+Example:
+setInterval(function() {
+    loadData(currentCity);
+}, 30000);
+
+In this practical, setInterval() calls the loadData() function every 30 seconds to request the latest available air quality data for the selected city.
+
+
+14. DATE AND TIME FUNCTIONS:
+
+JavaScript provides the Date object to work with dates and time.
+
+Example:
+new Date().toLocaleTimeString();
+
+It returns the current local time in a readable format.
+
+In this practical, it displays the last update time whenever new air quality data is successfully received.
+
+
+15. RESPONSIVE WEB DESIGN:
+
+Responsive web design ensures that a webpage adjusts its layout according to different screen sizes and devices.
+
+CSS media queries are used to apply different styles based on screen width.
+
+Example:
+@media(max-width: 450px) {
+    .container {
+        width: 90%;
+        padding: 12px;
+    }
+}
+
+In this practical, media queries make the AirPulse application suitable for smaller screens and mobile devices.
+
+
+16. WORKING OF THE PRACTICAL:
+
+The webpage contains an Air Quality Monitoring application where users can select a city from a dropdown list.
+
+Initially, the $(document).ready() function ensures that the webpage is loaded before executing the application code.
+
+The cities object stores the latitude and longitude of the available cities.
+
+When the user selects a city and clicks Check AQI, the submit event is triggered. The preventDefault() method prevents the page from reloading.
+
+The loadData() function sends an AJAX GET request using jQuery $.ajax() to the Open-Meteo Air Quality API.
+
+The API retrieves the AQI, PM2.5, and PM10 values based on the selected city's coordinates.
+
+The success callback receives the JSON response and updates the webpage using jQuery DOM manipulation methods such as .text().
+
+If the request fails, an appropriate error message is displayed.
+
+The Save Favourite button stores the selected city in Local Storage using JSON.stringify(). Favourite cities are retrieved using JSON.parse() and displayed dynamically.
+
+Users can click a favourite city to load its air quality information again.
+
+The application also saves the last selected city in Local Storage and restores it when the webpage is opened again.
+
+Finally, setInterval() automatically refreshes the displayed data by making a new API request every 30 seconds.
+
+Thus, the practical demonstrates JavaScript, jQuery, DOM manipulation, event handling, AJAX, API integration, JSON handling, Local Storage, array methods, and automatic data refreshing.
+
+-->
