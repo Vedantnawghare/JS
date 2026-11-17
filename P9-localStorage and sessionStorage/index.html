@@ -265,3 +265,257 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+THEORY:
+
+Web Storage is a feature of HTML5 that allows web applications to store data in the user's browser. It helps save information locally without requiring a server or database.
+
+JavaScript provides two types of Web Storage:
+1. Local Storage
+2. Session Storage
+
+In this practical, both storage mechanisms are used to save and retrieve seminar schedule data.
+
+
+1. WEB STORAGE:
+
+Web Storage allows websites to store key-value pairs in the browser.
+
+It provides two main storage mechanisms:
+
+a) Local Storage:
+- Stores data in the browser with no automatic expiration.
+- Data remains available even after closing and reopening the browser.
+- Data can be removed manually using JavaScript.
+
+Example:
+localStorage.setItem("schedule", data);
+
+b) Session Storage:
+- Stores data for a particular browser tab session.
+- Data remains available while the tab session is active.
+- Data is generally cleared when the tab or window session ends.
+
+Example:
+sessionStorage.setItem("schedule", data);
+
+
+2. LOCAL STORAGE METHODS:
+
+JavaScript provides the following methods to work with localStorage.
+
+a) setItem():
+Stores data using a specified key and value.
+
+Syntax:
+localStorage.setItem("key", "value");
+
+Example:
+localStorage.setItem("schedule", data);
+
+b) getItem():
+Retrieves stored data using its key.
+
+Syntax:
+localStorage.getItem("key");
+
+c) removeItem():
+Removes a specific key-value pair from storage.
+
+Syntax:
+localStorage.removeItem("schedule");
+
+d) clear():
+Removes all key-value pairs from the current storage area.
+
+Example:
+localStorage.clear();
+
+
+3. SESSION STORAGE METHODS:
+
+Session Storage provides methods similar to Local Storage.
+
+- sessionStorage.setItem() : Stores data in session storage.
+- sessionStorage.getItem() : Retrieves stored data.
+- sessionStorage.removeItem() : Removes a specific stored item.
+- sessionStorage.clear() : Removes all session storage data.
+
+In this practical, these methods are used to save, load, and clear seminar schedule data.
+
+
+4. DIFFERENCE BETWEEN LOCAL STORAGE AND SESSION STORAGE:
+
+Local Storage:
+- Data persists even after closing the browser.
+- Data remains until manually removed.
+- Can be accessed by pages from the same origin.
+
+Session Storage:
+- Data is associated with a particular browser tab session.
+- Data is generally cleared when the tab session ends.
+- Separate tabs have separate session storage areas.
+
+Both storage mechanisms store data as strings and have an approximate limit of 5 MB per origin in many browsers, although the actual limit varies.
+
+
+5. DOM MANIPULATION:
+
+DOM (Document Object Model) represents an HTML document as a tree of objects.
+
+JavaScript uses DOM methods and properties to access and modify webpage elements dynamically.
+
+Methods and properties used:
+
+- getElementById() : Selects an element using its ID.
+- querySelectorAll() : Selects all elements matching a CSS selector.
+- innerHTML : Gets or modifies the HTML content of an element.
+- innerText : Gets or modifies the text content of an element.
+- contentEditable : Makes an HTML element editable.
+- onclick : Executes a function when an element is clicked.
+
+
+6. EDITABLE TABLE USING contentEditable:
+
+The contentEditable property allows users to edit the content of an HTML element directly in the browser.
+
+Example:
+td.contentEditable = true;
+
+When set to true, the table cell becomes editable.
+
+When set to false, editing is disabled.
+
+In this practical, the toggleEdit() function enables and disables editing of all table cells.
+
+
+7. ARRAY METHODS AND ITERATION:
+
+JavaScript provides methods to access and process collections of elements.
+
+In this practical, the forEach() method is used to perform an operation on every selected table cell.
+
+Example:
+cells.forEach(function(td) {
+    td.contentEditable = editMode;
+});
+
+The querySelectorAll() method selects all table cells, and forEach() applies the editable property to each cell.
+
+
+8. BOOLEAN VARIABLES AND CONDITIONAL OPERATORS:
+
+A Boolean variable stores either true or false.
+
+Example:
+let editMode = false;
+
+The logical NOT (!) operator reverses a Boolean value.
+
+Example:
+editMode = !editMode;
+
+In this practical, the editMode variable controls whether table editing is enabled or disabled.
+
+The ternary operator is also used to display an appropriate message.
+
+Example:
+editMode ? "Editing Enabled" : "Editing Disabled";
+
+
+9. EVENT HANDLING:
+
+Events are actions performed by the user, such as clicking buttons or table cells.
+
+JavaScript provides event handling methods to respond to user actions.
+
+In this practical:
+- onclick is used to execute storage and editing functions.
+- Click events are used to detect clicks on table cells.
+- The event object provides information about the event.
+- e.target identifies the actual element that triggered the event.
+
+Example:
+document.getElementById("tableBody").onclick = function(e) {
+    alert("You clicked: " + e.target.innerText);
+};
+
+
+10. INNERHTML AND DEFAULT DATA:
+
+The innerHTML property is used to retrieve or modify the HTML content inside an element.
+
+In this practical, the initial table data is stored in a variable named defaultData.
+
+Example:
+let defaultData = document.getElementById("tableBody").innerHTML;
+
+This stores the original table structure and content.
+
+The same data is used by the resetTable() function to restore the table to its original state.
+
+
+11. WORKING OF THE PRACTICAL:
+
+The webpage contains a Seminar Schedule Planner with a table displaying seminar days, start times, end times, and topics.
+
+Initially, the original table data is stored in the defaultData variable.
+
+The Enable Editing button uses the toggleEdit() function to make table cells editable or non-editable using the contentEditable property.
+
+The Save Local Storage button retrieves the current table data using innerHTML and stores it using localStorage.setItem().
+
+Similarly, the Save Session Storage button stores the schedule using sessionStorage.setItem().
+
+The Load Local and Load Session buttons retrieve the saved data using getItem() and display it in the table.
+
+The Clear Local and Clear Session buttons remove the stored schedule using removeItem().
+
+The Reset Table button restores the original table data from defaultData.
+
+Finally, the click event on the table detects the selected cell and displays its content using the event object's target property.
+
+Thus, the practical demonstrates Local Storage, Session Storage, DOM manipulation, event handling, editable HTML elements, and browser-based data persistence.
+
+-->
